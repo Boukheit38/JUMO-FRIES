@@ -1,0 +1,36 @@
+<h1>🍟 Benedict's Fries & Drinks</h1>
+
+<h2>Place Your Order</h2>
+
+<label>Full Name</label><br>
+<input type="text" placeholder="Enter your name"><br><br>
+
+<label>Phone Number</label><br>
+<input type="tel" placeholder="Enter your phone number"><br><br>
+
+<label>Delivery Location</label><br>
+<input type="text" placeholder="Enter your location"><br><br>
+
+<label>Select Your Order</label><br>
+<select>
+    <option>🍟 Regular Fries - KSh 150</option>
+    <option>🍟 Large Fries - KSh 250</option>
+    <option>🌶️ Chips Masala - KSh 300</option>
+    <option>🍗 Fries + Chicken - KSh 500</option>
+    <option>🍔 Burger + Fries - KSh 650</option>
+    <option>🌭 Hot Dog + Fries - KSh 450</option>
+    <option>🥓 Fries + Sausage - KSh 350</option>
+    <option>🍕 Pizza Slice + Fries - KSh 700</option>
+    <option>🥪 Sandwich + Fries - KSh 450</option>
+    <option>🥤 Soda (Coke, Fanta, Sprite) - KSh 100</option>
+    <option>🧃 Juice - KSh 150</option>
+    <option>💧 Water - KSh 50</option>
+    <option>☕ Tea - KSh 80</option>
+    <option>☕ Coffee - KSh 120</option>
+    <option>🥛 Milkshake - KSh 250</option>
+</select><br><br>
+
+<label>Quantity</label><br>
+<input type="number" value="1" min="1"><br><br>
+
+<button>🛒 Place Order</button> 
