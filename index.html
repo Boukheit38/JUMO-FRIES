@@ -66,39 +66,23 @@ button:hover{
 </head>
 <body>
 
-<h1>🍟 BENEDICT FRIES MENU 🍟</h1>
+<h1>🍟 JUMOS FRIES MENU 🍟</h1>
+    <label for="order">Select Your Order</label><br>
 
-<div class="menu">
+<select id="order" name="order" required>
+    <option value="">-- Choose Your Order --</option>
+    <option value="Chips">🍟 Chips - From KSh 50</option>
+    <option value="Smokie">🌭 Smokie - KSh 30 each</option>
+    <option value="Soda">🥤 Soda - KSh 60</option>
+    <option value="Chicken & Chips">🍗 Chicken & Chips - KSh 300</option>
+</select>
 
-<div class="item">
-<span>🍟 Chips</span>
-<span>KSh 100</span>
-</div>
+<br><br>
 
-<div class="item">
-<span>🌭 Smokie</span>
-<span>KSh 50</span>
-</div>
+<label for="quantity">Quantity</label><br>
+<input type="number" id="quantity" name="quantity" value="1" min="1">
 
-<div class="item">
-<span>🥤 Soda</span>
-<span>KSh 60</span>
-</div>
 
-<div class="item">
-<span>🍗 Chicken & Chips</span>
-<span>KSh 350</span>
-</div>
-
-<button onclick="alert('Thank you for your order!')">
-Order Now
-</button>
-
-</div>
-
-</body>
-</html>
-</select><br><br>
 
 <label>Quantity</label><br>
 <input type="number" value="1" min="1"><br><br>
