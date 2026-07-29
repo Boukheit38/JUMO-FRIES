@@ -13,21 +13,91 @@
 
 <label>Select Your Order</label><br>
 <select>
-    <option>🍟 Regular Fries - KSh 150</option>
-    <option>🍟 Large Fries - KSh 250</option>
-    <option>🌶️ Chips Masala - KSh 300</option>
-    <option>🍗 Fries + Chicken - KSh 500</option>
-    <option>🍔 Burger + Fries - KSh 650</option>
-    <option>🌭 Hot Dog + Fries - KSh 450</option>
-    <option>🥓 Fries + Sausage - KSh 350</option>
-    <option>🍕 Pizza Slice + Fries - KSh 700</option>
-    <option>🥪 Sandwich + Fries - KSh 450</option>
-    <option>🥤 Soda (Coke, Fanta, Sprite) - KSh 100</option>
-    <option>🧃 Juice - KSh 150</option>
-    <option>💧 Water - KSh 50</option>
-    <option>☕ Tea - KSh 80</option>
-    <option>☕ Coffee - KSh 120</option>
-    <option>🥛 Milkshake - KSh 250</option>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fries Menu</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f8f8f8;
+    text-align:center;
+}
+
+h1{
+    color:#e67e22;
+}
+
+.menu{
+    width:320px;
+    margin:20px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 20px;
+    background:#28a745;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#218838;
+}
+</style>
+
+</head>
+<body>
+
+<h1>🍟 BENEDICT FRIES MENU 🍟</h1>
+
+<div class="menu">
+
+<div class="item">
+<span>🍟 Chips</span>
+<span>KSh 100</span>
+</div>
+
+<div class="item">
+<span>🌭 Smokie</span>
+<span>KSh 50</span>
+</div>
+
+<div class="item">
+<span>🥤 Soda</span>
+<span>KSh 60</span>
+</div>
+
+<div class="item">
+<span>🍗 Chicken & Chips</span>
+<span>KSh 350</span>
+</div>
+
+<button onclick="alert('Thank you for your order!')">
+Order Now
+</button>
+
+</div>
+
+</body>
+</html>
 </select><br><br>
 
 <label>Quantity</label><br>
