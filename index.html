@@ -1,89 +1,228 @@
-<h1>🍟 Jumo's Fries & Drinks</h1>
-
-<h2>Place Your Order</h2>
-
-<label>Full Name</label><br>
-<input type="text" placeholder="Enter your name"><br><br>
-
-<label>Phone Number</label><br>
-<input type="tel" placeholder="Enter your phone number"><br><br>
-
-<label>Delivery Location</label><br>
-<input type="text" placeholder="Enter your location"><br><br>
-
-<label>Select Your Order</label><br>
-<select>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fries Menu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f8f8f8;
-    text-align:center;
-}
+    <title>Jumo's Fries & Drinks</title>
 
-h1{
-    color:#e67e22;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #fff8e7;
+            color: #222;
+        }
 
-.menu{
-    width:320px;
-    margin:20px auto;
-    background:#fff;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
+        header {
+            background: #ff9800;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
 
-.item{
-    display:flex;
-    justify-content:space-between;
-    padding:12px;
-    border-bottom:1px solid #ddd;
-}
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
 
-button{
-    margin-top:20px;
-    padding:12px 20px;
-    background:#28a745;
-    color:white;
-    border:none;
-    border-radius:5px;
-    font-size:16px;
-    cursor:pointer;
-}
+        .container {
+            max-width: 600px;
+            margin: 25px auto;
+            padding: 20px;
+        }
 
-button:hover{
-    background:#218838;
-}
-</style>
+        .menu {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
 
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: bold;
+        }
+
+        .price {
+            color: #e65100;
+            font-weight: bold;
+        }
+
+        .order {
+            background: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1da851;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>🍟 JUMOS FRIES MENU 🍟</h1>
-    <label for="order">Select Your Order</label><br>
-<select id="order" name="order" required>
-    <option value="">-- Choose Your Order --</option>
-    <option value="Chips">🍟 Chips - From KSh 50</option>
-    <option value="Smokie">🌭 Smokie - KSh 30 each</option>
-    <option value="Soda">🥤 Soda - KSh 60</option>
-    <option value="Chicken & Chips">🍗 Chicken & Chips - KSh 300</option>
-</select>
-<br><br>
-<label for="quantity">Quantity</label><br>
-<input type="number" id="quantity" name="quantity" value="1" min="1">
+<header>
+    <h1>🍟 Jumo's Fries & Drinks</h1>
+    <p>Fresh • Delicious • Affordable</p>
+</header>
+
+<div class="container">
+
+    <div class="menu">
+        <h2>🍔 Our Menu</h2>
+
+        <div class="item">
+            <span class="item-name">🍟 Chips</span>
+            <span class="price">From KSh 50</span>
+        </div>
+
+        <div class="item">
+            <span class="item-name">🌭 Smokie</span>
+            <span class="price">KSh 30</span>
+        </div>
+
+        <div class="item">
+            <span class="item-name">🥤 Soda</span>
+            <span class="price">KSh 60</span>
+        </div>
+
+        <div class="item">
+            <span class="item-name">🍗 Chicken & Chips</span>
+            <span class="price">KSh 250</span>
+        </div>
+    </div>
 
 
+    <div class="order">
 
-<label>Quantity</label><br>
-<input type="number" value="1" min="1"><br><br>
-<a href="https://wa.me/254757423478?text=Hello%20I%20want%20to%20place%20an%20order" target="_blank">
-  Place Order
-</a>
+        <h2>🛒 Place Your Order</h2>
 
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number">
+
+        <label for="location">Delivery Location</label>
+        <input type="text" id="location" placeholder="Enter your location">
+
+        <label for="food">Select Your Order</label>
+
+        <select id="food">
+            <option value="">-- Select food --</option>
+            <option value="Chips - KSh 50">Chips - From KSh 50</option>
+            <option value="Smokie - KSh 30">Smokie - KSh 30</option>
+            <option value="Soda - KSh 60">Soda - KSh 60</option>
+            <option value="Chicken & Chips - KSh 250">
+                Chicken & Chips - KSh 250
+            </option>
+        </select>
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" min="1" value="1">
+
+        <label for="message">Additional Instructions</label>
+        <textarea id="message" rows="3"
+            placeholder="Any special instructions?"></textarea>
+
+        <button onclick="sendOrder()">
+            📲 Order via WhatsApp
+        </button>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Jumo's Fries & Drinks
+</footer>
+
+
+<script>
+
+function sendOrder() {
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const location = document.getElementById("location").value;
+    const food = document.getElementById("food").value;
+    const quantity = document.getElementById("quantity").value;
+    const message = document.getElementById("message").value;
+
+    if (name === "" || phone === "" || location === "" || food === "") {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    const whatsappNumber = "254700000000";
+
+    const orderMessage =
+        "🍟 *NEW ORDER - JUMO'S FRIES & DRINKS*%0A%0A" +
+        "👤 Name: " + name + "%0A" +
+        "📞 Phone: " + phone + "%0A" +
+        "📍 Location: " + location + "%0A" +
+        "🍔 Order: " + food + "%0A" +
+        "🔢 Quantity: " + quantity + "%0A" +
+        "📝 Instructions: " + message;
+
+    const whatsappURL =
+        "https://wa.me/" + whatsappNumber +
+        "?text=" + orderMessage;
+
+    window.open(whatsappURL, "_blank");
+}
+
+</script>
+
+</body>
+</html>
