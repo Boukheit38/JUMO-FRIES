@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
 <title>Jumo's Fries & Drinks</title>
 
 <style>
+
 body {
     font-family: Arial, sans-serif;
     background: #f8f8f8;
@@ -19,8 +21,12 @@ h1 {
     color: #e67e22;
 }
 
+h2 {
+    color: #333;
+}
+
 .menu {
-    max-width: 400px;
+    max-width: 420px;
     margin: auto;
     background: white;
     padding: 25px;
@@ -30,20 +36,30 @@ h1 {
 
 label {
     font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
 }
 
-input, select {
+input,
+select,
+textarea {
     width: 90%;
     padding: 12px;
-    margin-top: 5px;
+    margin-top: 6px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 90px;
+    resize: vertical;
 }
 
 button {
     margin-top: 20px;
-    padding: 13px 25px;
+    padding: 14px 25px;
     background: #28a745;
     color: white;
     border: none;
@@ -55,7 +71,15 @@ button {
 button:hover {
     background: #218838;
 }
+
+#total {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -66,74 +90,296 @@ button:hover {
 
 <h2>Place Your Order</h2>
 
-<label>Full Name</label><br>
-<input type="text" id="name" placeholder="Enter your name" required>
+
+<!-- CUSTOMER NAME -->
+
+<label for="name">Full Name</label><br>
+
+<input
+    type="text"
+    id="name"
+    placeholder="Enter your name"
+    required
+>
+
 <br><br>
 
-<label>Phone Number</label><br>
-<input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+<!-- PHONE NUMBER -->
+
+<label for="phone">Phone Number</label><br>
+
+<input
+    type="tel"
+    id="phone"
+    placeholder="Enter your phone number"
+    required
+>
+
 <br><br>
 
-<label>Delivery Location</label><br>
-<input type="text" id="location" placeholder="Enter your location" required>
+
+<!-- DELIVERY LOCATION -->
+
+<label for="location">Delivery Location</label><br>
+
+<input
+    type="text"
+    id="location"
+    placeholder="Enter your location"
+    required
+>
+
 <br><br>
 
-<label>Select Your Order</label><br>
+
+<!-- ORDER -->
+
+<label for="order">Select Your Order</label><br>
+
 <select id="order" required>
+
     <option value="">-- Choose Your Order --</option>
-    <option value="Chips" data-price="50">🍟 Chips - KSh 50</option>
-    <option value="Smokie" data-price="30">🌭 Smokie - KSh 30 each</option>
-    <option value="Soda" data-price="60">🥤 Soda - KSh 60</option>
-    <option value="Chicken & Chips" data-price="300">🍗 Chicken & Chips - KSh 300</option>
+
+    <option value="Chips" data-price="50">
+        🍟 Chips - From KSh 50
+    </option>
+
+    <option value="Smokie" data-price="30">
+        🌭 Smokie - KSh 30 each
+    </option>
+
+    <option value="Soda" data-price="60">
+        🥤 Soda - KSh 60
+    </option>
+
+    <option value="Chicken & Chips" data-price="300">
+        🍗 Chicken & Chips - KSh 300
+    </option>
+
 </select>
+
 <br><br>
 
-<label>Quantity</label><br>
-<input type="number" id="quantity" value="1" min="1" required>
+
+<!-- QUANTITY -->
+
+<label for="quantity">Quantity</label><br>
+
+<input
+    type="number"
+    id="quantity"
+    value="1"
+    min="1"
+    required
+>
+
 <br><br>
 
-<button onclick="placeOrder()">📲 Place Order on WhatsApp</button>
+
+<!-- SPECIAL REQUEST -->
+
+<label for="specialRequest">📝 Special Request</label><br>
+
+<textarea
+    id="specialRequest"
+    placeholder="Enter any special request..."
+></textarea>
+
+<br><br>
+
+
+<!-- TOTAL -->
+
+<div id="total">
+    Total: KSh 0
+</div>
+
+
+<!-- WHATSAPP BUTTON -->
+
+<button onclick="placeOrder()">
+    📲 Place Order on WhatsApp
+</button>
 
 </div>
 
+
 <script>
+
+const orderSelect = document.getElementById("order");
+const quantityInput = document.getElementById("quantity");
+const totalDisplay = document.getElementById("total");
+
+
+/* CALCULATE TOTAL */
+
+function calculateTotal() {
+
+    const selectedOption =
+        orderSelect.options[orderSelect.selectedIndex];
+
+    const price =
+        Number(selectedOption.getAttribute("data-price")) || 0;
+
+    const quantity =
+        Number(quantityInput.value) || 0;
+
+    const total = price * quantity;
+
+    totalDisplay.textContent =
+        "Total: KSh " + total;
+}
+
+
+/* UPDATE TOTAL WHEN ORDER CHANGES */
+
+orderSelect.addEventListener("change", calculateTotal);
+
+
+/* UPDATE TOTAL WHEN QUANTITY CHANGES */
+
+quantityInput.addEventListener("input", calculateTotal);
+
+
+/* PLACE ORDER */
 
 function placeOrder() {
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const location = document.getElementById("location").value;
+    const name =
+        document.getElementById("name").value.trim();
 
-    const orderSelect = document.getElementById("order");
-    const order = orderSelect.value;
+    const phone =
+        document.getElementById("phone").value.trim();
 
-    const quantity = document.getElementById("quantity").value;
+    const location =
+        document.getElementById("location").value.trim();
 
-    if (name === "" || phone === "" || location === "" || order === "") {
-        alert("Please fill in all the details before placing your order.");
+    const order =
+        orderSelect.value;
+
+    const quantity =
+        Number(quantityInput.value);
+
+    const specialRequest =
+        document.getElementById("specialRequest").value.trim();
+
+
+    /* CHECK REQUIRED INFORMATION */
+
+    if (
+        name === "" ||
+        phone === "" ||
+        location === "" ||
+        order === "" ||
+        quantity < 1
+    ) {
+
+        alert(
+            "Please fill in your name, phone number, location, order and quantity."
+        );
+
         return;
     }
 
-    const selectedOption = orderSelect.options[orderSelect.selectedIndex];
-    const price = Number(selectedOption.getAttribute("data-price"));
 
-    const total = price * Number(quantity);
+    /* GET PRICE */
+
+    const selectedOption =
+        orderSelect.options[orderSelect.selectedIndex];
+
+    const price =
+        Number(selectedOption.getAttribute("data-price"));
+
+
+    /* CALCULATE TOTAL */
+
+    const total =
+        price * quantity;
+
+
+    /* SPECIAL REQUEST */
+
+    let requestText;
+
+    if (specialRequest === "") {
+
+        requestText = "None";
+
+    } else {
+
+        requestText = specialRequest;
+
+    }
+
+
+    /* WHATSAPP MESSAGE */
 
     const message =
-        "🍟 *NEW ORDER - JUMO'S FRIES*%0A%0A" +
-        "👤 Name: " + encodeURIComponent(name) + "%0A" +
-        "📞 Phone: " + encodeURIComponent(phone) + "%0A" +
-        "📍 Location: " + encodeURIComponent(location) + "%0A%0A" +
-        "🛒 Order: " + encodeURIComponent(order) + "%0A" +
-        "🔢 Quantity: " + quantity + "%0A" +
-        "💰 Total: KSh " + total;
+        "🍟 *NEW ORDER - JUMO'S FRIES*%0A" +
+        "%0A" +
 
-    const whatsappNumber = "254716055034";
+        "👤 *Customer Name:* " +
+        encodeURIComponent(name) +
+        "%0A" +
+
+        "📞 *Phone Number:* " +
+        encodeURIComponent(phone) +
+        "%0A" +
+
+        "📍 *Delivery Location:* " +
+        encodeURIComponent(location) +
+        "%0A" +
+
+        "%0A" +
+
+        "🛒 *ORDER DETAILS*%0A" +
+
+        "🍽️ Item: " +
+        encodeURIComponent(order) +
+        "%0A" +
+
+        "🔢 Quantity: " +
+        quantity +
+        "%0A" +
+
+        "💵 Price Each: KSh " +
+        price +
+        "%0A" +
+
+        "💰 *TOTAL: KSh " +
+        total +
+        "*%0A" +
+
+        "%0A" +
+
+        "📝 *Special Request:* " +
+        encodeURIComponent(requestText) +
+
+        "%0A%0A" +
+
+        "Thank you for ordering from Jumo's Fries! 🍟";
+
+
+    /* YOUR WHATSAPP NUMBER */
+
+    const whatsappNumber =
+        "254757423478";
+
+
+    /* CREATE WHATSAPP LINK */
 
     const whatsappURL =
-        "https://wa.me/" + whatsappNumber + "?text=" + message;
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        message;
+
+
+    /* OPEN WHATSAPP */
 
     window.open(whatsappURL, "_blank");
+
 }
 
 </script>
