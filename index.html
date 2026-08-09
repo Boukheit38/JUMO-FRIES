@@ -1,223 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jumo's Fries & Drinks</title>
+<title>Jumo's Fries & Drinks</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #fff8e7;
-            color: #222;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
 
-        header {
-            background: #ff9800;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
+h1 {
+    color: #e67e22;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 30px;
-        }
+.menu {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
 
-        .container {
-            max-width: 600px;
-            margin: 25px auto;
-            padding: 20px;
-        }
+label {
+    font-weight: bold;
+}
 
-        .menu {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+input, select {
+    width: 90%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
 
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5px;
-            border-bottom: 1px solid #ddd;
-        }
+button {
+    margin-top: 20px;
+    padding: 13px 25px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 17px;
+    cursor: pointer;
+}
 
-        .item:last-child {
-            border-bottom: none;
-        }
-
-        .item-name {
-            font-weight: bold;
-        }
-
-        .price {
-            color: #e65100;
-            font-weight: bold;
-        }
-
-        .order {
-            background: white;
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        label {
-            display: block;
-            margin-top: 12px;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            font-size: 15px;
-        }
-
-        button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            background: #25D366;
-            color: white;
-            border: none;
-            border-radius: 7px;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #1da851;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-    </style>
+button:hover {
+    background: #218838;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>🍟 Jumo's Fries & Drinks</h1>
-    <p>Fresh • Delicious • Affordable</p>
-</header>
+<div class="menu">
 
-<div class="container">
+<h1>🍟 Jumo's Fries & Drinks</h1>
 
-    <div class="menu">
-        <h2>🍔 Our Menu</h2>
+<h2>Place Your Order</h2>
 
-        <div class="item">
-            <span class="item-name">🍟 Chips</span>
-            <span class="price">From KSh 50</span>
-        </div>
+<label>Full Name</label><br>
+<input type="text" id="name" placeholder="Enter your name" required>
+<br><br>
 
-        <div class="item">
-            <span class="item-name">🌭 Smokie</span>
-            <span class="price">KSh 30</span>
-        </div>
+<label>Phone Number</label><br>
+<input type="tel" id="phone" placeholder="Enter your phone number" required>
+<br><br>
 
-        <div class="item">
-            <span class="item-name">🥤 Soda</span>
-            <span class="price">KSh 60</span>
-        </div>
+<label>Delivery Location</label><br>
+<input type="text" id="location" placeholder="Enter your location" required>
+<br><br>
 
-        <div class="item">
-            <span class="item-name">🍗 Chicken & Chips</span>
-            <span class="price">KSh 250</span>
-        </div>
-    </div>
+<label>Select Your Order</label><br>
+<select id="order" required>
+    <option value="">-- Choose Your Order --</option>
+    <option value="Chips" data-price="50">🍟 Chips - KSh 50</option>
+    <option value="Smokie" data-price="30">🌭 Smokie - KSh 30 each</option>
+    <option value="Soda" data-price="60">🥤 Soda - KSh 60</option>
+    <option value="Chicken & Chips" data-price="300">🍗 Chicken & Chips - KSh 300</option>
+</select>
+<br><br>
 
+<label>Quantity</label><br>
+<input type="number" id="quantity" value="1" min="1" required>
+<br><br>
 
-    <div class="order">
-
-        <h2>🛒 Place Your Order</h2>
-
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name">
-
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number">
-
-        <label for="location">Delivery Location</label>
-        <input type="text" id="location" placeholder="Enter your location">
-
-        <label for="food">Select Your Order</label>
-
-        <select id="food">
-            <option value="">-- Select food --</option>
-            <option value="Chips - KSh 50">Chips - From KSh 50</option>
-            <option value="Smokie - KSh 30">Smokie - KSh 30</option>
-            <option value="Soda - KSh 60">Soda - KSh 60</option>
-            <option value="Chicken & Chips - KSh 250">
-                Chicken & Chips - KSh 250
-            </option>
-        </select>
-
-        <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" min="1" value="1">
-
-        <label for="message">Additional Instructions</label>
-        <textarea id="message" rows="3"
-            placeholder="Any special instructions?"></textarea>
-
-        <button onclick="sendOrder()">
-            📲 Order via WhatsApp
-        </button>
-
-    </div>
+<button onclick="placeOrder()">📲 Place Order on WhatsApp</button>
 
 </div>
 
-<footer>
-    © 2026 Jumo's Fries & Drinks
-</footer>
-
-
 <script>
 
-function sendOrder() {
+function placeOrder() {
 
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const location = document.getElementById("location").value;
-    const food = document.getElementById("food").value;
-    const quantity = document.getElementById("quantity").value;
-    const message = document.getElementById("message").value;
 
-    if (name === "" || phone === "" || location === "" || food === "") {
-        alert("Please fill in all required fields.");
+    const orderSelect = document.getElementById("order");
+    const order = orderSelect.value;
+
+    const quantity = document.getElementById("quantity").value;
+
+    if (name === "" || phone === "" || location === "" || order === "") {
+        alert("Please fill in all the details before placing your order.");
         return;
     }
 
-    const whatsappNumber = "+254716055034";
+    const selectedOption = orderSelect.options[orderSelect.selectedIndex];
+    const price = Number(selectedOption.getAttribute("data-price"));
 
-    const orderMessage =
-        "🍟 *NEW ORDER - JUMO'S FRIES & DRINKS*%0A%0A" +
-        "👤 Name: " + name + "%0A" +
-        "📞 Phone: " + phone + "%0A" +
-        "📍 Location: " + location + "%0A" +
-        "🍔 Order: " + food + "%0A" +
+    const total = price * Number(quantity);
+
+    const message =
+        "🍟 *NEW ORDER - JUMO'S FRIES*%0A%0A" +
+        "👤 Name: " + encodeURIComponent(name) + "%0A" +
+        "📞 Phone: " + encodeURIComponent(phone) + "%0A" +
+        "📍 Location: " + encodeURIComponent(location) + "%0A%0A" +
+        "🛒 Order: " + encodeURIComponent(order) + "%0A" +
         "🔢 Quantity: " + quantity + "%0A" +
-        "📝 Instructions: " + message;
+        "💰 Total: KSh " + total;
+
+    const whatsappNumber = "254716055034";
 
     const whatsappURL =
-        "https://wa.me/" + whatsappNumber +
-        "?text=" + orderMessage;
+        "https://wa.me/" + whatsappNumber + "?text=" + message;
 
     window.open(whatsappURL, "_blank");
 }
