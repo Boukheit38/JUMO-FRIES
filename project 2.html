@@ -1,4 +1,51 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Jumo's Fries & Drinks</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+header {
+    background: #ff7a00;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin: 8px 0 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section {
+    background: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 h2 {
@@ -298,6 +345,7 @@ footer {
 
 const whatsappNumber = "254716055034";
 
+const googleSheetURL = "https://script.google.com/macros/s/AKfycby3Vj6SHPw2HsM_KaYA5EeYJOJOKs0SBMS1h_-hCtGNr12MlT7FqISuWW3wEQn-ZnuD/exec";
 
 /* =========================
    CART
@@ -639,10 +687,38 @@ function placeOrder() {
         "Opening WhatsApp...";
 
 
-    /* Open WhatsApp */
+    /* Send order to Google Sheets */
 
+const sheetData = {
+    name: name,
+    phone: phone,
+    location: location,
+    order: cart.map(item =>
+        item.name + " x " + item.quantity
+    ).join(", "),
+    quantity: cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    ),
+    specialRequest: specialRequest || "None",
+    payment: payment,
+    total: total
+};
+
+fetch(googleSheetURL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+        "Content-Type": "text/plain"
+    },
+    body: JSON.stringify(sheetData)
+})
+.then(() => {
     window.open(whatsappURL, "_blank");
-
+})
+.catch(() => {
+    window.open(whatsappURL, "_blank");
+});
 }
 
 </script>
