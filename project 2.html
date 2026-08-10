@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jumo's Fries & Drinks</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+header {
+    background: #ff7a00;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin: 8px 0 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section {
+    background: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: #ff7a00;
+    margin-top: 0;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+}
+
+.product h3 {
+    margin: 0 0 8px;
+}
+
+.price {
+    font-weight: bold;
+    color: #ff7a00;
+    margin-bottom: 10px;
+}
+
+.product button {
+    width: 100%;
+    background: #ff7a00;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.product button:hover {
+    background: #e56800;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+    gap: 10px;
+}
+
+.cart-controls button {
+    border: none;
+    background: #ff7a00;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove {
+    background: #d32f2f !important;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+label {
+    font-weight: bold;
+}
+
+.total {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 15px;
+}
+
+.order-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #25D366;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background: #1da851;
+}
+
+.empty {
+    color: #777;
+    text-align: center;
+}
+
+.success {
+    display: none;
+    background: #e8f5e9;
+    border: 1px solid #4caf50;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍟 Jumo's Fries & Drinks</h1>
+    <p>Fresh • Affordable • Delicious</p>
+</header>
+
+<div class="container">
+
+    <!-- MENU -->
+    <div class="section">
+        <h2>🍽️ Our Menu</h2>
+
+        <div class="menu">
+
+            <div class="product">
+                <h3>🍟 Chips</h3>
+                <div class="price">From KSh 50</div>
+                <button onclick="addToCart('Chips', 50)">
+                    Add to Order
+                </button>
+            </div>
+
+            <div class="product">
+                <h3>🌭 Smokie</h3>
+                <div class="price">KSh 30</div>
+                <button onclick="addToCart('Smokie', 30)">
+                    Add to Order
+                </button>
+            </div>
+
+            <div class="product">
+                <h3>🥤 Soda</h3>
+                <div class="price">KSh 60</div>
+                <button onclick="addToCart('Soda', 60)">
+                    Add to Order
+                </button>
+            </div>
+
+            <div class="product">
+                <h3>🍗 Chicken & Chips</h3>
+                <div class="price">KSh 250</div>
+                <button onclick="addToCart('Chicken & Chips', 250)">
+                    Add to Order
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- CART -->
+    <div class="section">
+        <h2>🛒 Your Order</h2>
+
+        <div id="cart">
+            <p class="empty">Your order is empty.</p>
+        </div>
+
+        <div class="total">
+            Total: KSh <span id="total">0</span>
+        </div>
+    </div>
+
+
+    <!-- CUSTOMER DETAILS -->
+    <div class="section">
+        <h2>📋 Customer Details</h2>
+
+        <label>Full Name</label>
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your full name"
+        >
+
+        <label>Phone Number</label>
+        <input
+            type="tel"
+            id="phone"
+            placeholder="e.g. 0712345678"
+        >
+
+        <label>Delivery Location</label>
+        <input
+            type="text"
+            id="location"
+            placeholder="Enter your delivery location"
+        >
+
+        <label>Payment Method</label>
+        <select id="payment">
+            <option value="">Select payment method</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="M-Pesa">M-Pesa</option>
+        </select>
+    </div>
+
+
+    <!-- SPECIAL REQUEST -->
+    <div class="section">
+        <h2>📝 Special Request</h2>
+
+        <p>
+            Have any special instructions for your order?
+        </p>
+
+        <textarea
+            id="specialRequest"
+            placeholder="Example: Please make the chips less salty..."
+        ></textarea>
+    </div>
+
+
+    <!-- PLACE ORDER -->
+    <div class="section">
+
+        <h2>📦 Place Your Order</h2>
+
+        <button class="order-button" onclick="placeOrder()">
+            📱 Place Order on WhatsApp
+        </button>
+
+        <div class="success" id="successMessage"></div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    <p>© 2026 Jumo's Fries & Drinks</p>
+    <p>Thank you for your order ❤️</p>
+</footer>
+
+
+<script>
+
+/* =========================
+   WHATSAPP NUMBER
+   ========================= */
+
+/*
+   CHANGE THIS NUMBER.
+
+   Example:
+   Kenyan number 0712345678 becomes:
+
+   254712345678
+*/
+
+const whatsappNumber = "254716055034";
+
+
+/* =========================
+   CART
+   ========================= */
+
+let cart = [];
+
+
+/* =========================
+   ADD PRODUCT
+   ========================= */
+
+function addToCart(name, price) {
+
+    const existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+
+    }
+
+    displayCart();
+}
+
+
+/* =========================
+   DISPLAY CART
+   ========================= */
+
+function displayCart() {
+
+    const cartDiv = document.getElementById("cart");
+
+    if (cart.length === 0) {
+
+        cartDiv.innerHTML =
+            '<p class="empty">Your order is empty.</p>';
+
+        document.getElementById("total").textContent = "0";
+
+        return;
+    }
+
+    let html = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+
+        const subtotal = item.price * item.quantity;
+
+        total += subtotal;
+
+        html += `
+            <div class="cart-item">
+
+                <div>
+                    <strong>${item.name}</strong><br>
+                    KSh ${item.price} × ${item.quantity}
+                    <br>
+                    <strong>KSh ${subtotal}</strong>
+                </div>
+
+                <div class="cart-controls">
+
+                    <button onclick="decreaseQuantity(${index})">
+                        -
+                    </button>
+
+                    <button onclick="increaseQuantity(${index})">
+                        +
+                    </button>
+
+                    <button
+                        class="remove"
+                        onclick="removeItem(${index})"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+    });
+
+    cartDiv.innerHTML = html;
+
+    document.getElementById("total").textContent = total;
+}
+
+
+/* =========================
+   INCREASE QUANTITY
+   ========================= */
+
+function increaseQuantity(index) {
+
+    cart[index].quantity++;
+
+    displayCart();
+}
+
+
+/* =========================
+   DECREASE QUANTITY
+   ========================= */
+
+function decreaseQuantity(index) {
+
+    cart[index].quantity--;
+
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+    displayCart();
+}
+
+
+/* =========================
+   REMOVE ITEM
+   ========================= */
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    displayCart();
+}
+
+
+/* =========================
+   GENERATE ORDER NUMBER
+   ========================= */
+
+function generateOrderNumber() {
+
+    const randomNumber =
+        Math.floor(1000 + Math.random() * 9000);
+
+    return "JUMO-" + randomNumber;
+}
+
+
+/* =========================
+   PLACE ORDER
+   ========================= */
+
+function placeOrder() {
+
+    /* Check cart */
+
+    if (cart.length === 0) {
+
+        alert("Please add at least one item to your order.");
+
+        return;
+    }
+
+
+    /* Get customer details */
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const location =
+        document.getElementById("location").value.trim();
+
+    const payment =
+        document.getElementById("payment").value;
+
+    const specialRequest =
+        document.getElementById("specialRequest").value.trim();
+
+
+    /* Validate details */
+
+    if (name === "") {
+
+        alert("Please enter your full name.");
+
+        return;
+    }
+
+    if (phone === "") {
+
+        alert("Please enter your phone number.");
+
+        return;
+    }
+
+    if (location === "") {
+
+        alert("Please enter your delivery location.");
+
+        return;
+    }
+
+    if (payment === "") {
+
+        alert("Please select a payment method.");
+
+        return;
+    }
+
+
+    /* Generate order number */
+
+    const orderNumber = generateOrderNumber();
+
+
+    /* Calculate total */
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += item.price * item.quantity;
+
+    });
+
+
+    /* Create order message */
+
+    let message = "";
+
+    message += "🍟 *NEW JUMO ORDER*";
+    message += "\n\n";
+
+    message += "📌 *Order Number:* ";
+    message += orderNumber;
+
+    message += "\n\n";
+
+    message += "👤 *CUSTOMER DETAILS*";
+    message += "\n";
+
+    message += "Name: " + name;
+    message += "\n";
+
+    message += "Phone: " + phone;
+    message += "\n";
+
+    message += "Location: " + location;
+    message += "\n";
+
+    message += "Payment: " + payment;
+
+    message += "\n\n";
+
+    message += "🛒 *ORDER ITEMS*";
+    message += "\n";
+
+    cart.forEach(item => {
+
+        const subtotal =
+            item.price * item.quantity;
+
+        message +=
+            "• " +
+            item.name +
+            " × " +
+            item.quantity +
+            " — KSh " +
+            subtotal;
+
+        message += "\n";
+    });
+
+
+    message += "\n";
+
+    message += "💰 *TOTAL: KSh " + total + "*";
+
+    message += "\n\n";
+
+
+    /* Special request */
+
+    message += "📝 *SPECIAL REQUEST*";
+    message += "\n";
+
+    if (specialRequest !== "") {
+
+        message += specialRequest;
+
+    } else {
+
+        message += "None";
+
+    }
+
+
+    message += "\n\n";
+
+    message += "🙏 Thank you for ordering from Jumo's Fries & Drinks!";
+
+
+    /* Encode message */
+
+    const encodedMessage =
+        encodeURIComponent(message);
+
+
+    /* WhatsApp URL */
+
+    const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodedMessage;
+
+
+    /* Show confirmation */
+
+    const success =
+        document.getElementById("successMessage");
+
+    success.style.display = "block";
+
+    success.innerHTML =
+        "<strong>Order " +
+        orderNumber +
+        " created!</strong><br>" +
+        "Opening WhatsApp...";
+
+
+    /* Open WhatsApp */
+
+    window.open(whatsappURL, "_blank");
+
+}
+
+</script>
+
+</body>
+</html>
