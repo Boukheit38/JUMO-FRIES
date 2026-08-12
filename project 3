@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Boke Camp Tents | Hire & Sales</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7f3;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #174d2b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 16px;
+    }
+
+    nav {
+      background: #103b21;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background: #2e7d4a;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+                  url("https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      min-height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 30px;
+    }
+
+    .hero-content h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #f2a900;
+      color: #111;
+      padding: 12px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #d99100;
+    }
+
+    section {
+      padding: 45px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #174d2b;
+      margin-bottom: 30px;
+      font-size: 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      color: #174d2b;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #d68b00;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .order-section {
+      background: white;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.12);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 25px;
+      margin-top: 10px;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .radio-group input {
+      width: auto;
+      margin-right: 5px;
+    }
+
+    .quantity-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .quantity-row > div {
+      flex: 1;
+    }
+
+    .total-box {
+      margin-top: 25px;
+      padding: 20px;
+      background: #e8f4eb;
+      border-left: 5px solid #174d2b;
+      border-radius: 5px;
+    }
+
+    .total-box h3 {
+      color: #174d2b;
+    }
+
+    .contact {
+      text-align: center;
+      background: #174d2b;
+      color: white;
+      max-width: none;
+    }
+
+    .contact h2 {
+      color: white;
+    }
+
+    .contact p {
+      margin: 8px;
+    }
+
+    .whatsapp {
+      display: inline-block;
+      margin-top: 15px;
+      background: #25D366;
+      color: white;
+      padding: 13px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #103b21;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .notice {
+      background: #fff3cd;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h2 {
+        font-size: 30px;
+      }
+
+      .hero-content p {
+        font-size: 17px;
+      }
+
+      .quantity-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .order-section {
+        margin: 15px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>🏕️ Boke Camp Tents</h1>
+    <p>Tent Hire • Tent Sales • Camping Equipment</p>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#tents">Our Tents</a>
+    <a href="#order">Book / Order</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="home">
+    <div class="hero-content">
+      <h2>Quality Tents for Every Occasion</h2>
+      <p>Hire or buy reliable camping and event tents at affordable prices.</p>
+      <a href="#order" class="btn">Book a Tent</a>
+    </div>
+  </div>
+
+  <!-- TENTS -->
+  <section id="tents">
+
+    <h2>Our Tents</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1478827387698-1527781a4887?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+          <h3>🏕️ Camping Tent</h3>
+          <p>Comfortable tent suitable for camping and outdoor adventures.</p>
+
+          <p class="price">Hire: KSh 1,000/day</p>
+          <p>Sale: KSh 8,500</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+          <h3>⛺ Family Tent</h3>
+          <p>Spacious tent suitable for families and group camping.</p>
+
+          <p class="price">Hire: KSh 2,000/day</p>
+          <p>Sale: KSh 15,000</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+          <h3>🎪 Event Tent</h3>
+          <p>Large tents suitable for weddings, parties and outdoor events.</p>
+
+          <p class="price">Hire: KSh 5,000/day</p>
+          <p>Sale: KSh 35,000</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ORDER FORM -->
+  <section id="order">
+
+    <h2>Book or Buy a Tent</h2>
+
+    <div class="order-section">
+
+      <form id="orderForm">
+
+        <label>Full Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your full name"
+          required
+        >
+
+        <label>Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="e.g. 0712345678"
+          required
+        >
+
+        <label>Delivery / Event Location</label>
+        <input
+          type="text"
+          id="location"
+          placeholder="Enter your location"
+          required
+        >
+
+        <label>What would you like?</label>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="orderType"
+              value="Hire"
+              checked
+              onchange="updateForm()"
+            >
+            Hire
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="orderType"
+              value="Buy"
+              onchange="updateForm()"
+            >
+            Buy
+          </label>
+
+        </div>
+
+        <label>Select Tent</label>
+
+        <select id="tent" onchange="calculateTotal()" required>
+
+          <option value="">-- Select Tent --</option>
+
+          <option
+            value="Camping Tent"
+            data-hire="1000"
+            data-sale="8500">
+            Camping Tent
+          </option>
+
+          <option
+            value="Family Tent"
+            data-hire="2000"
+            data-sale="15000">
+            Family Tent
+          </option>
+
+          <option
+            value="Event Tent"
+            data-hire="5000"
+            data-sale="35000">
+            Event Tent
+          </option>
+
+        </select>
+
+        <div class="quantity-row">
+
+          <div>
+            <label>Quantity</label>
+
+            <input
+              type="number"
+              id="quantity"
+              min="1"
+              value="1"
+              onchange="calculateTotal()"
+              required
+            >
+          </div>
+
+          <div id="daysContainer">
+
+            <label>Number of Days</label>
+
+            <input
+              type="number"
+              id="days"
+              min="1"
+              value="1"
+              onchange="calculateTotal()"
+            >
+
+          </div>
+
+        </div>
+
+        <label>Event / Hire Date</label>
+
+        <input
+          type="date"
+          id="hireDate"
+        >
+
+        <label>Special Request</label>
+
+        <textarea
+          id="specialRequest"
+          placeholder="Any special request? e.g. delivery, setup, chairs, tables..."
+        ></textarea>
+
+        <div class="total-box">
+
+          <h3>Estimated Total</h3>
+
+          <p id="total">
+            KSh 0
+          </p>
+
+          <div class="notice">
+            Final price may vary depending on delivery, setup and other services.
+          </div>
+
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn">
+          📱 Order via WhatsApp
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+
+    <h2>Contact Us</h2>
+
+    <p>🏕️ Boke Camp Tents Hire & Sales</p>
+
+    <p>📞 Phone: 0700 000 000</p>
+
+    <p>📍 Serving customers across Kenya</p>
+
+    <a
+      class="whatsapp"
+      href="https://wa.me/254700000000"
+      target="_blank">
+      💬 Chat on WhatsApp
+    </a>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 Boke Camp Tents Hire & Sales
+    </p>
+
+    <p>
+      Quality tents • Affordable prices • Reliable service
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // CHANGE THIS TO YOUR WHATSAPP NUMBER
+    const whatsappNumber = "254716055034";
+
+
+    function updateForm() {
+
+      const orderType =
+        document.querySelector(
+          'input[name="orderType"]:checked'
+        ).value;
+
+      const daysContainer =
+        document.getElementById("daysContainer");
+
+      if (orderType === "Buy") {
+
+        daysContainer.style.display = "none";
+
+      } else {
+
+        daysContainer.style.display = "block";
+
+      }
+
+      calculateTotal();
+
+    }
+
+
+    function calculateTotal() {
+
+      const tent =
+        document.getElementById("tent");
+
+      const selected =
+        tent.options[tent.selectedIndex];
+
+      const quantity =
+        Number(document.getElementById("quantity").value) || 0;
+
+      const orderType =
+        document.querySelector(
+          'input[name="orderType"]:checked'
+        ).value;
+
+      let price = 0;
+
+      if (selected.value !== "") {
+
+        if (orderType === "Hire") {
+
+          price =
+            Number(selected.dataset.hire);
+
+        } else {
+
+          price =
+            Number(selected.dataset.sale);
+
+        }
+
+      }
+
+      let days = 1;
+
+      if (orderType === "Hire") {
+
+        days =
+          Number(document.getElementById("days").value) || 1;
+
+      }
+
+      const total =
+        price * quantity * days;
+
+      document.getElementById("total").innerText =
+        "KSh " + total.toLocaleString();
+
+    }
+
+
+    document
+      .getElementById("orderForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+          document.getElementById("name").value;
+
+        const phone =
+          document.getElementById("phone").value;
+
+        const location =
+          document.getElementById("location").value;
+
+        const orderType =
+          document.querySelector(
+            'input[name="orderType"]:checked'
+          ).value;
+
+        const tent =
+          document.getElementById("tent").value;
+
+        const quantity =
+          document.getElementById("quantity").value;
+
+        const hireDate =
+          document.getElementById("hireDate").value;
+
+        const specialRequest =
+          document.getElementById("specialRequest").value;
+
+
+        let days = "";
+
+        if (orderType === "Hire") {
+
+          days =
+            document.getElementById("days").value;
+
+        }
+
+
+        const selected =
+          document.getElementById("tent").options[
+            document.getElementById("tent").selectedIndex
+          ];
+
+
+        let price = 0;
+
+        if (orderType === "Hire") {
+
+          price =
+            Number(selected.dataset.hire);
+
+        } else {
+
+          price =
+            Number(selected.dataset.sale);
+
+        }
+
+
+        let total = price * Number(quantity);
+
+        if (orderType === "Hire") {
+
+          total =
+            total * Number(days);
+
+        }
+
+
+        let message =
+          "🏕️ *NEW TENT ORDER*%0A%0A" +
+
+          "👤 *Customer:* " +
+          encodeURIComponent(name) +
+
+          "%0A📞 *Phone:* " +
+          encodeURIComponent(phone) +
+
+          "%0A📍 *Location:* " +
+          encodeURIComponent(location) +
+
+          "%0A📦 *Order Type:* " +
+          encodeURIComponent(orderType) +
+
+          "%0A⛺ *Tent:* " +
+          encodeURIComponent(tent) +
+
+          "%0A🔢 *Quantity:* " +
+          encodeURIComponent(quantity);
+
+
+        if (orderType === "Hire") {
+
+          message +=
+            "%0A📅 *Number of Days:* " +
+            encodeURIComponent(days);
+
+        }
+
+
+        if (hireDate !== "") {
+
+          message +=
+            "%0A🗓️ *Date:* " +
+            encodeURIComponent(hireDate);
+
+        }
+
+
+        message +=
+          "%0A💰 *Estimated Total:* KSh " +
+          encodeURIComponent(
+            total.toLocaleString()
+          );
+
+
+        if (specialRequest.trim() !== "") {
+
+          message +=
+            "%0A📝 *Special Request:* " +
+            encodeURIComponent(
+              specialRequest
+            );
+
+        }
+
+
+        message +=
+          "%0A%0AThank you for choosing Boke Camp Tents!";
+
+
+        const whatsappURL =
+          "https://wa.me/" +
+          whatsappNumber +
+          "?text=" +
+          message;
+
+
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
+      });
+
+
+    updateForm();
+
+  </script>
+
+</body>
+</html>
